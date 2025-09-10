@@ -37,7 +37,7 @@ public class MyFIRSTJavaOpMode extends LinearOpMode {
     DistanceSensor distance1;
     IMU imu;
 
-    var myVisionPortalBuilder, nArtifacts, myAprilTagDetections, myVisionPortal, horizontalInput, myAprilTagDetection, shootPower, isShooting, verticalInput, myApriltagProcessor, maxDrivePower, myAprilTagProcessorBuilder, mode;
+    double myVisionPortalBuilder, nArtifacts, myAprilTagDetections, myVisionPortal, horizontalInput, myAprilTagDetection, shootPower, isShooting, verticalInput, myApriltagProcessor, maxDrivePower, myAprilTagProcessorBuilder, mode;
 
     // Describe this function...
     public void initializeVisionPortal(){
