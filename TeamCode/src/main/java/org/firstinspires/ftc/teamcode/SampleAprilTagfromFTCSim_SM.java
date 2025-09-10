@@ -35,7 +35,7 @@ public class MyFIRSTJavaOpMode extends LinearOpMode {
     Servo artifactstopper;
     ColorSensor color1;
     DistanceSensor distance1;
-    BNO055IMU imu;
+    IMU imu;
 
     var myVisionPortalBuilder, nArtifacts, myAprilTagDetections, myVisionPortal, horizontalInput, myAprilTagDetection, shootPower, isShooting, verticalInput, myApriltagProcessor, maxDrivePower, myAprilTagProcessorBuilder, mode;
 
