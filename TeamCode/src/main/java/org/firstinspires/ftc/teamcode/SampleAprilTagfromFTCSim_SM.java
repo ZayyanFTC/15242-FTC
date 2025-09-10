@@ -41,10 +41,13 @@ public class MyFIRSTJavaOpMode extends LinearOpMode {
 
     // Describe this function...
     public void initializeVisionPortal(){
-        myVisionPortalBuilder = new VisionPortal.Builder();
-        myVisionPortal = (myVisionPortalBuilder.build());
-        myVisionPortalBuilder.setCamera(hardwareMap.get(WebcamName.class, "webcam"));
-        myAprilTagProcessorBuilder = new AprilTagProcessor.Builder();
+        myVisionPortalBuilder = new VisionPortal.Builder()
+                .setCamera(hardwareMap.get(WebcamName.class, "webcam"))
+                .addProcessor(aprilTag)
+                .build();
+        myVisionPortal = (myVisionPortalBuilder);
+//        myVisionPortalBuilder.setCamera(hardwareMap.get(WebcamName.class, "webcam"));
+        myAprilTagProcessorBuilder = new AprilTagProcessor.Builder().build();
         myApriltagProcessor = (myAprilTagProcessorBuilder.build());
         myVisionPortalBuilder.addProcessor(myApriltagProcessor);
     }
