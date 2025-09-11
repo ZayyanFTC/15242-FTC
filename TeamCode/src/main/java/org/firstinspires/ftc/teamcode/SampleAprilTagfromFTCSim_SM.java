@@ -7,26 +7,6 @@
  *                                                                      *
  ***********************************************************************/
 
-package org.firstinspires.ftc.teamcode;
-
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
-import com.qualcomm.robotcore.hardware.IMU;
-import com.qualcomm.robotcore.util.Range;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.controls.ExposureControl;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.controls.GainControl;
-import org.firstinspires.ftc.vision.VisionPortal;
-import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
-import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
-
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class MyFIRSTJavaOpMode extends LinearOpMode {
     DcMotor driveLeft;
@@ -35,19 +15,16 @@ public class MyFIRSTJavaOpMode extends LinearOpMode {
     Servo artifactstopper;
     ColorSensor color1;
     DistanceSensor distance1;
-    IMU imu;
+    BNO055IMU imu;
 
-    double myVisionPortalBuilder, nArtifacts, myAprilTagDetections, myVisionPortal, horizontalInput, myAprilTagDetection, shootPower, isShooting, verticalInput, myApriltagProcessor, maxDrivePower, myAprilTagProcessorBuilder, mode;
+    var myVisionPortalBuilder, nArtifacts, myAprilTagDetections, myVisionPortal, horizontalInput, myAprilTagDetection, shootPower, isShooting, verticalInput, myApriltagProcessor, maxDrivePower, myAprilTagProcessorBuilder, mode;
 
     // Describe this function...
     public void initializeVisionPortal(){
-        myVisionPortalBuilder = new VisionPortal.Builder()
-                .setCamera(hardwareMap.get(WebcamName.class, "webcam"))
-                .addProcessor(aprilTag)
-                .build();
-        myVisionPortal = (myVisionPortalBuilder);
-//        myVisionPortalBuilder.setCamera(hardwareMap.get(WebcamName.class, "webcam"));
-        myAprilTagProcessorBuilder = new AprilTagProcessor.Builder().build();
+        myVisionPortalBuilder = new VisionPortal.Builder();
+        myVisionPortal = (myVisionPortalBuilder.build());
+        myVisionPortalBuilder.setCamera(hardwareMap.get(WebcamName.class, "webcam"));
+        myAprilTagProcessorBuilder = new AprilTagProcessor.Builder();
         myApriltagProcessor = (myAprilTagProcessorBuilder.build());
         myVisionPortalBuilder.addProcessor(myApriltagProcessor);
     }
@@ -206,8 +183,7 @@ public class MyFIRSTJavaOpMode extends LinearOpMode {
         // mode 0 = keyboard, 1 = gamepad, 2 = autonomous
         mode = 2;
         waitForStart();
-        //   pickMode();
-        displayVisionPortalData();
+        pickMode();
     }
 
 }

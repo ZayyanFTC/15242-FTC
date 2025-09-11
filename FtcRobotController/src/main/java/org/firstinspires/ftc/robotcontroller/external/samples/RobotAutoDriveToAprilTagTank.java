@@ -233,7 +233,7 @@ public class RobotAutoDriveToAprilTagTank extends LinearOpMode
         // Create the AprilTag processor by using a builder.
         aprilTag = new AprilTagProcessor.Builder().build();
 
-        // Adjust Image Decimation to trade-off detection-range for detection-rate.
+        // Adjust Image Decimat/ion to trade-off detection-range for detection-rate.
         // e.g. Some typical detection data using a Logitech C920 WebCam
         // Decimation = 1 ..  Detect 2" Tag from 10 feet away at 10 Frames per second
         // Decimation = 2 ..  Detect 2" Tag from 6  feet away at 22 Frames per second
