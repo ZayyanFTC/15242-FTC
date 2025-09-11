@@ -13,7 +13,7 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
 import java.util.List;
 
-public class TeleOpSM2025 extends LinearOpMode{
+public class SamplefromFTCSim_SM extends LinearOpMode{
 
 private DcMotor leftDrive;
 private DcMotor rightDrive;
