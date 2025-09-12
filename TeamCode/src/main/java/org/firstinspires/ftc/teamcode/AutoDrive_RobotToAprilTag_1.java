@@ -42,11 +42,26 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
             horizontalInput = gamepad1.right_stick_x;
             verticalInput = gamepad1.left_stick_y;
             processDriveInputs();
-            if(gamepad)
+            if(gamepad1.a && !isShooting) {
+                shoot();
+            }
         }
     }
     public void processDriveInputs() {
         leftDrive.setPower(verticalInput * maxDrivePower + horizontalInput * verticalInput);
         rightDrive.setPower(verticalInput * maxDrivePower - horizontalInput * verticalInput);
+    }
+    public void shoot() {
+        leftDrive.setPower(0);
+        rightDrive.setPower(0);
+        isShooting = true;
+        artifactstopper.setPosition(0);
+        shootwheel.setPower(shootPower);
+        sleep(250);
+        artifactstopper.setPosition(0.2);
+        sleep(200);
+        shootwheel.setPower(0);
+        sleep(1500);
+        isShooting = false;
     }
 }
