@@ -158,7 +158,7 @@ public class MyFIRSTJavaOpMode extends LinearOpMode {
     public void displayVisionPortalData(){
         myAprilTagDetections = (myApriltagProcessor.getDetections());
         for (String myAprilTagDetection2 : myAprilTagDetections) {
-            myAprilTagDetection = myAprilTagDetection2;
+            myAprilTagDetection = //'[[myAprilTagDetection2;
             telemetry.addData("ID", (myAprilTagDetection.id));
             telemetry.addData("Range", (myAprilTagDetection.ftcPose.range));
             telemetry.addData("Yaw", (myAprilTagDetection.ftcPose.yaw));
