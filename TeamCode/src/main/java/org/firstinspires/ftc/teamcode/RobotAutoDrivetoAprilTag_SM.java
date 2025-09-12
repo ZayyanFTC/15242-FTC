@@ -224,6 +224,18 @@ public class RobotAutoDrivetoAprilTag_SM extends LinearOpMode
         rightDrive.setPower(rightPower);
     }
 
+    private void moveToGPP(){
+        
+    }
+
+    private void moveToPGP(){
+        
+    }
+
+    private void moveToGPP(){
+        
+    }
+
     /**
      * Initialize the AprilTag processor.
      */
