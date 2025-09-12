@@ -136,7 +136,7 @@ public class MyFIRSTJavaOpMode extends LinearOpMode {
     }
 
     // Describe this function...
-    public void shoot(){
+    public void ~shoot(){
         // Don"t move while shooting
         driveLeft.setPower(0);
         driveRight.setPower(0);

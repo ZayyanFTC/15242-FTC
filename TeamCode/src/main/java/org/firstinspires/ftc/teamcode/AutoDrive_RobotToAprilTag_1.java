@@ -11,7 +11,7 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
     private Servo artifactstopper;
     boolean isShooting;
     double shootPower, horizontalInput, verticalInput;
-    int maxDrivePower, mode;
+    int maxDrivePower, mode, nArtifacts;
 
     @Override
     public void runOpMode() {
@@ -35,6 +35,9 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
     public void pickMode() {
        if(mode == 0) {
            gamepadDrive();
+       }
+       else if(mode == 1) {
+           autoDrive();
        }
     }
     public void gamepadDrive() {
@@ -63,5 +66,47 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
         shootwheel.setPower(0);
         sleep(1500);
         isShooting = false;
+    }
+    public void autoDrive() {
+        driveTogGoal();
+        shootThreeArtifacts();
+        driveToLoadingSpotAndBack();
+        shootThreeArtifacts();
+        driveToLoadingSpotAndBack();
+        shootThreeArtifacts();
+    }
+    public void driveTogGoal() {
+        leftDrive.setPower(1);
+        rightDrive.setPower(1);
+        sleep(1200);
+        leftDrive.setPower(-1);
+        rightDrive.setPower(1);
+        sleep(230);
+        leftDrive.setPower(0);
+        rightDrive.setPower(0);
+        sleep(500);
+    }
+    public void shootThreeArtifacts() {
+        nArtifacts = 3;
+        while(opModeIsActive() && nArtifacts > 0) {
+            if(!isShooting) {
+                shoot();
+                nArtifacts =- 1;
+            }
+        }
+    }
+    public void driveToLoadingSpotAndBack() {
+        leftDrive.setPower(-1);
+        rightDrive.setPower(-1);
+        sleep(1500);
+        leftDrive.setPower(0);
+        rightDrive.setPower(0);
+        sleep(10000);
+        leftDrive.setPower(1);
+        rightDrive.setPower(1);
+        sleep(1500);
+        leftDrive.setPower(0);
+        rightDrive.setPower(0);
+        sleep(500);
     }
 }
