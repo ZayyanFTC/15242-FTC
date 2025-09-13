@@ -4,15 +4,26 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.vision.VisionPortal;
+import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
+import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
+
+import java.util.List;
+
 public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
     private DcMotor leftDrive;
     private DcMotor rightDrive;
     private DcMotor shootwheel;
     private Servo artifactstopper;
+    private AprilTagProcessor aprilTag;
+    private VisionPortal visionPortal;
+    private static final boolean USE_WEBCAM = true;
     boolean isShooting;
     double shootPower, horizontalInput, verticalInput;
     int maxDrivePower, mode, nArtifacts;
-
+    AprilTagDetection myAprilTagDetection;
     @Override
     public void runOpMode() {
         leftDrive = hardwareMap.get(DcMotor.class, "leftDrive");
@@ -20,11 +31,13 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
         shootwheel = hardwareMap.get(DcMotor.class, "shootwheel");
         artifactstopper = hardwareMap.get(Servo.class, "artifactstoppper");
         initialSetup();
+        initializeVisionPortal();
         shootPower = 0.8;
         maxDrivePower = 1;
         mode = 0;
         waitForStart();
         pickMode();
+        displayVisionPortalData();
     }
     public void initialSetup() {
         leftDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -108,5 +121,28 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
         leftDrive.setPower(0);
         rightDrive.setPower(0);
         sleep(500);
+    }
+
+    public void initializeVisionPortal() {
+        aprilTag = new AprilTagProcessor.Builder().build();
+        VisionPortal.Builder builder = new VisionPortal.Builder();
+        if(USE_WEBCAM) {
+            builder.setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"));
+        }
+        else {
+            builder.setCamera(BuiltinCameraDirection.BACK);
+        }
+        builder.addProcessor(aprilTag);
+        visionPortal = builder.build();
+    }
+    public void displayVisionPortalData() {
+        List<AprilTagDetection> myAprilTagDetections = (aprilTag.getDetections());
+        for (AprilTagDetection myAprilTag : myAprilTagDetections) {
+            myAprilTagDetection = myAprilTag;
+            telemetry.addData("ID", myAprilTagDetection.id);
+            telemetry.addData("Range", myAprilTagDetection.ftcPose.range);
+            telemetry.addData("Yaw", myAprilTagDetection.ftcPose.yaw);
+        }
+        telemetry.update();
     }
 }
