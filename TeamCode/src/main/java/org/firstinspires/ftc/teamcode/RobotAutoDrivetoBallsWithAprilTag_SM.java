@@ -1,24 +1,15 @@
-<<<<<<< HEAD
 package org.firstinspires.ftc.teamcode;
-=======
-package org.firstodeinspires.teamcode;
->>>>>>> 57600a4848bf346c668f53f99fb9c8e2d2650917
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-<<<<<<< HEAD
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-=======
-
->>>>>>> 57600a4848bf346c668f53f99fb9c8e2d2650917
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 
-<<<<<<< HEAD
 import java.util.List;
 
 public class RobotAutoDrivetoBallsWithAprilTag_SM extends LinearOpMode {
