@@ -20,6 +20,7 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
     private AprilTagProcessor aprilTag;
     private VisionPortal visionPortal;
     private static final boolean USE_WEBCAM = true;
+    private static final int DESIRED_TAG_ID = -1;
     boolean isShooting;
     double shootPower, horizontalInput, verticalInput;
     int maxDrivePower, mode, nArtifacts;
@@ -142,6 +143,19 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
         while(opModeIsActive()) {
             List<AprilTagDetection> myAprilTagDetections = (aprilTag.getDetections());
             for (AprilTagDetection myAprilTag : myAprilTagDetections) {
+                if(myAprilTag.metadata != null) {
+                    if((DESIRED_TAG_ID < 0) || (myAprilTag.id == DESIRED_TAG_ID)) {
+                        targetFound = true;
+                        myAprilTagDetection = myAprilTag;
+                        break();
+                    }
+                    else{
+                        telemetry.addData("Skipping", "Tag ID %d is not desired", detection.id);
+                    }
+                }
+                else {
+                    telemetry.addData("Unknown", "Tag ID %d is not in TagLibrary", myAprilTag.id);
+                }
                 myAprilTagDetection = myAprilTag;
                 telemetry.addData("ID", myAprilTagDetection.id);
                 telemetry.addData("Range", myAprilTagDetection.ftcPose.range);
