@@ -81,3 +81,4 @@ lint/tmp/
 # lint/reports/
 
 /Teamcode/build.gradle
+.vscode/settings.json
