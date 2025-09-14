@@ -136,13 +136,18 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
         visionPortal = builder.build();
     }
     public void displayVisionPortalData() {
-        List<AprilTagDetection> myAprilTagDetections = (aprilTag.getDetections());
-        for (AprilTagDetection myAprilTag : myAprilTagDetections) {
-            myAprilTagDetection = myAprilTag;
-            telemetry.addData("ID", myAprilTagDetection.id);
-            telemetry.addData("Range", myAprilTagDetection.ftcPose.range);
-            telemetry.addData("Yaw", myAprilTagDetection.ftcPose.yaw);
+        boolean targetFound = true;
+        double drive = 0;
+        double turn = 0;
+        while(opModeIsActive()) {
+            List<AprilTagDetection> myAprilTagDetections = (aprilTag.getDetections());
+            for (AprilTagDetection myAprilTag : myAprilTagDetections) {
+                myAprilTagDetection = myAprilTag;
+                telemetry.addData("ID", myAprilTagDetection.id);
+                telemetry.addData("Range", myAprilTagDetection.ftcPose.range);
+                telemetry.addData("Yaw", myAprilTagDetection.ftcPose.yaw);
+            }
+            telemetry.update();
         }
-        telemetry.update();
     }
 }
