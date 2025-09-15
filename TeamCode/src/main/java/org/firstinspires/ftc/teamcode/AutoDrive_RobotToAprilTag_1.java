@@ -89,7 +89,7 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
         driveToLoadingSpotAndBack();
         shootThreeArtifacts();
     }
-    public void driveTogGoal() {
+    public void driveToGoal() {
         leftDrive.setPower(1);
         rightDrive.setPower(1);
         sleep(1200);
