@@ -161,6 +161,7 @@ public void runOpMode() {
     rightDrive = hardwareMap.get(DcMotor.class, "rightDrive");
     initialSetup();
     getAprilTag();
+    waitForStart();
     if (aprilTag == 20) {
         leftDrive.setPower(0.5);
         rightDrive.setPower(-0.5);

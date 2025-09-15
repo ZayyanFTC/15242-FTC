@@ -161,6 +161,13 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
                 telemetry.addData("Range", myAprilTagDetection.ftcPose.range);
                 telemetry.addData("Yaw", myAprilTagDetection.ftcPose.yaw);
             }
+            if(targetFound) {
+                telemetry.addData();
+                telemetry.addData();
+            }
+            else {
+                telemetry.addData();
+            }
             telemetry.update();
         }
     }
