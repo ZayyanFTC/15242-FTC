@@ -9,10 +9,20 @@ public class MEEP_MEEP_TEST extends LinearOpMode {
     private DcMotor rightDrive;
     private DcMotor shootwheel;
     private Servo artifactstopper;
-}
-public void runOpMode() {
-    leftDrive = hardwareMap(DcMotor.class, "leftDrive");
-    rightDrive = hardwareMap(DcMotor.class, "rightDrive");
-    shootwheel = hardwareMap(DcMotor.class, "shootwheel");
-    artifactstopper = hardwareMap(Servo.class, "artifactstopper");
+    boolean isShooting;
+
+    public void runOpMode() {
+        leftDrive = hardwareMap(DcMotor.class, "leftDrive");
+        rightDrive = hardwareMap(DcMotor.class, "rightDrive");
+        shootwheel = hardwareMap(DcMotor.class, "shootwheel");
+        artifactstopper = hardwareMap(Servo.class, "artifactstopper");
+        initialSetup();
+        pickMode();
+    }
+    public void initialSetup() {
+        leftDrive.setDirection(DcMotor.Direction.REVERSE);
+        rightDrive.setDirection(DcMotor.Direction.FORWARD);
+        isShooting = false;
+        artifactstopper.setPosition(0.2);
+    }
 }
