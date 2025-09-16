@@ -171,15 +171,16 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
                 double headingError = myAprilTag.ftcPose.bearing;
                 drive = Range.clip(rangeError * SPEED_GAIN, -MAX_AUTO_SPEED, MAX_AUTO_SPEED);
                 turn = Range.clip(headingError * TURN_GAIN, -MAX_AUTO_TURN, MAX_AUTO_TURN);
-                telemetry.addData();
-                telemetry.addData();
-                telemetry.addData();
-                telemetry.addData();
+                telemetry.addData("Found", "ID %d (%s)", myAprilTag.id, myAprilTag.metadata.name);
+                telemetry.addData("Range",  "%5.1f inches", myAprilTag.ftcPose.range);
+                telemetry.addData("Bearing","%3.0f degrees", myAprilTag.ftcPose.bearing);
+                telemetry.addData("Auto","Drive %5.2f, Turn %5.2f", drive, turn);
             }
             else {
-                telemetry.addData();
+                telemetry.addData("AprilTag Detections");
             }
             telemetry.update();
+            processDriveInputs();
         }
     }
 }
