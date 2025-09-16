@@ -13,6 +13,11 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import java.util.List;
 
 public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
+    final double DESIRED_DISTANCE = 12.0;
+    final double SPEED_GAIN = 0.02;
+    final double TURN_GAIN = 0.01;
+    final double MAX_AUTO_SPEED = 0.5;
+    final double MAX_AUTO_TURN = 0.25;
     private DcMotor leftDrive;
     private DcMotor rightDrive;
     private DcMotor shootwheel;
@@ -150,7 +155,7 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
                         break();
                     }
                     else{
-                        telemetry.addData("Skipping", "Tag ID %d is not desired", detection.id);
+                        telemetry.addData("Skipping", "Tag ID %d is not desired", myAprilTag.id);
                     }
                 }
                 else {
@@ -162,6 +167,12 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
                 telemetry.addData("Yaw", myAprilTagDetection.ftcPose.yaw);
             }
             if(targetFound) {
+                double rangeError = (myAprilTag.ftcPose.range - DESIRED_DISTANCE);
+                double headingError = myAprilTag.ftcPose.bearing;
+                drive = Range.clip(rangeError * SPEED_GAIN, -MAX_AUTO_SPEED, MAX_AUTO_SPEED);
+                turn = Range.clip(headingError * TURN_GAIN, -MAX_AUTO_TURN, MAX_AUTO_TURN);
+                telemetry.addData();
+                telemetry.addData();
                 telemetry.addData();
                 telemetry.addData();
             }
