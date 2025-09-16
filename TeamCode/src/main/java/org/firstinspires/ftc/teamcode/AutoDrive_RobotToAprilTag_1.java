@@ -167,7 +167,8 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
                 telemetry.addData("Yaw", myAprilTagDetection.ftcPose.yaw);
             }
             if(targetFound) {
-
+                leftDrive.setPower();
+                rightDrive.setPower();
 //                double rangeError = (myAprilTag.ftcPose.range - DESIRED_DISTANCE);
 //                double headingError = myAprilTag.ftcPose.bearing;
 //                drive = Range.clip(rangeError * SPEED_GAIN, -MAX_AUTO_SPEED, MAX_AUTO_SPEED);
