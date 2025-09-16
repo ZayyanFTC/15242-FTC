@@ -25,7 +25,7 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
     private AprilTagProcessor aprilTag;
     private VisionPortal visionPortal;
     private static final boolean USE_WEBCAM = true;
-    private static final int DESIRED_TAG_ID = -1;
+    private static final int DESIRED_TAG_ID = 20, 21, 22, 23, 24;
     boolean isShooting;
     double shootPower, horizontalInput, verticalInput;
     int maxDrivePower, mode, nArtifacts;
@@ -167,14 +167,15 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
                 telemetry.addData("Yaw", myAprilTagDetection.ftcPose.yaw);
             }
             if(targetFound) {
-                double rangeError = (myAprilTag.ftcPose.range - DESIRED_DISTANCE);
-                double headingError = myAprilTag.ftcPose.bearing;
-                drive = Range.clip(rangeError * SPEED_GAIN, -MAX_AUTO_SPEED, MAX_AUTO_SPEED);
-                turn = Range.clip(headingError * TURN_GAIN, -MAX_AUTO_TURN, MAX_AUTO_TURN);
-                telemetry.addData("Found", "ID %d (%s)", myAprilTag.id, myAprilTag.metadata.name);
-                telemetry.addData("Range",  "%5.1f inches", myAprilTag.ftcPose.range);
-                telemetry.addData("Bearing","%3.0f degrees", myAprilTag.ftcPose.bearing);
-                telemetry.addData("Auto","Drive %5.2f, Turn %5.2f", drive, turn);
+
+//                double rangeError = (myAprilTag.ftcPose.range - DESIRED_DISTANCE);
+//                double headingError = myAprilTag.ftcPose.bearing;
+//                drive = Range.clip(rangeError * SPEED_GAIN, -MAX_AUTO_SPEED, MAX_AUTO_SPEED);
+//                turn = Range.clip(headingError * TURN_GAIN, -MAX_AUTO_TURN, MAX_AUTO_TURN);
+//                telemetry.addData("Found", "ID %d (%s)", myAprilTag.id, myAprilTag.metadata.name);
+//                telemetry.addData("Range",  "%5.1f inches", myAprilTag.ftcPose.range);
+//                telemetry.addData("Bearing","%3.0f degrees", myAprilTag.ftcPose.bearing);
+//                telemetry.addData("Auto","Drive %5.2f, Turn %5.2f", drive, turn);
             }
             else {
                 telemetry.addData("AprilTag Detections");
