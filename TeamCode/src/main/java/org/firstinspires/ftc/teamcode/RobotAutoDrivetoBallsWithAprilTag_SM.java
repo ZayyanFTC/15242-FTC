@@ -26,13 +26,10 @@ public void runOpMode() {
     DcMotor[] drive = {leftDrive, rightDrive};
     initializeVisionPortal();
     getAprilTag();
-<<<<<<< HEAD
     waitForStart();
     if (aprilTag == 20) {
-=======
     displayVisionPortalData();
     if (tagID == 20) {
->>>>>>> fc62ea789347e04cc19e6e7c9ae95219e1df8822
         leftDrive.setPower(0.5);
         rightDrive.setPower(-0.5);
     }

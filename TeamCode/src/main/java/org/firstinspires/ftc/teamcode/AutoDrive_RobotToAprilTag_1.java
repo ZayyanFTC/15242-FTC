@@ -25,7 +25,7 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
     private AprilTagProcessor aprilTag;
     private VisionPortal visionPortal;
     private static final boolean USE_WEBCAM = true;
-    private static final int DESIRED_TAG_ID = 20, 21, 22, 23, 24;
+    private static final int DESIRED_TAG_ID = 20;
     boolean isShooting;
     double shootPower, horizontalInput, verticalInput;
     int maxDrivePower, mode, nArtifacts;
@@ -87,7 +87,7 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
         isShooting = false;
     }
     public void autoDrive() {
-        driveTogGoal();
+        driveToGoal();
         shootThreeArtifacts();
         driveToLoadingSpotAndBack();
         shootThreeArtifacts();
@@ -152,7 +152,7 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
                     if((DESIRED_TAG_ID < 0) || (myAprilTag.id == DESIRED_TAG_ID)) {
                         targetFound = true;
                         myAprilTagDetection = myAprilTag;
-                        break();
+                        break;
                     }
                     else{
                         telemetry.addData("Skipping", "Tag ID %d is not desired", myAprilTag.id);
@@ -167,8 +167,8 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
                 telemetry.addData("Yaw", myAprilTagDetection.ftcPose.yaw);
             }
             if(targetFound) {
-                leftDrive.setPower();
-                rightDrive.setPower();
+//                leftDrive.setPower();
+//                rightDrive.setPower();
 //                double rangeError = (myAprilTag.ftcPose.range - DESIRED_DISTANCE);
 //                double headingError = myAprilTag.ftcPose.bearing;
 //                drive = Range.clip(rangeError * SPEED_GAIN, -MAX_AUTO_SPEED, MAX_AUTO_SPEED);
@@ -179,7 +179,7 @@ public class AutoDrive_RobotToAprilTag_1 extends LinearOpMode {
 //                telemetry.addData("Auto","Drive %5.2f, Turn %5.2f", drive, turn);
             }
             else {
-                telemetry.addData("AprilTag Detections");
+                telemetry.addData("\n>","Drive using joysticks to find valid target\n");
             }
             telemetry.update();
             processDriveInputs();
