@@ -19,42 +19,42 @@ public class RobotAutoDrivetoBallsWithAprilTag_SM extends LinearOpMode {
     boolean isShooting = true;
     int tagID = -1;
 
-public void runOpMode() {
-    leftDrive = hardwareMap.get(DcMotor.class, "leftDrive");
-    rightDrive = hardwareMap.get(DcMotor.class, "rightDrive");
-    initialSetup();
-    DcMotor[] drive = {leftDrive, rightDrive};
-    initializeVisionPortal();
-    getAprilTag();
-    waitForStart();
-    if (aprilTag == 20) {
-    displayVisionPortalData();
-    if (tagID == 20) {
-        leftDrive.setPower(0.5);
-        rightDrive.setPower(-0.5);
+    public void runOpMode() {
+        leftDrive = hardwareMap.get(DcMotor.class, "leftDrive");
+        rightDrive = hardwareMap.get(DcMotor.class, "rightDrive");
+        initialSetup();
+        DcMotor[] drive = {leftDrive, rightDrive};
+        initializeVisionPortal();
+        getAprilTag();
+        waitForStart();
+        if (aprilTag == 20) {
+        displayVisionPortalData();
+        if (tagID == 20) {
+            leftDrive.setPower(0.5);
+            rightDrive.setPower(-0.5);
+        }
+        else if (tagID == 21) {
+            moveToGPP();
+        }
+        else if (tagID == 22) {
+            moveToPGP();
+        }
+        else if (tagID == 23) {
+            moveToPPG();
+        }
+        else {
+            leftDrive.setPower(-0.5);
+            rightDrive.setPower(0.5);
+        }
     }
-    else if (tagID == 21) {
-        moveToGPP();
-    }
-    else if (tagID == 22) {
-        moveToPGP();
-    }
-    else if (tagID == 23) {
-        moveToPPG();
-    }
-    else {
-        leftDrive.setPower(-0.5);
-        rightDrive.setPower(0.5);
-    }
-}
 
-public void initialSetup() {
-    leftDrive.setDirection(DcMotor.Direction.REVERSE);
-    rightDrive.setDirection(DcMotor.Direction.FORWARD);
-    drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-    drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-    isShooting = false;
-}
+    public void initialSetup() {
+        leftDrive.setDirection(DcMotor.Direction.REVERSE);
+        rightDrive.setDirection(DcMotor.Direction.FORWARD);
+        drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        isShooting = false;
+    }
 
 public void getAprilTag() {
 
