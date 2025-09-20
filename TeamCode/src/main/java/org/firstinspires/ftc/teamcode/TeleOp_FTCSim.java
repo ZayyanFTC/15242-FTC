@@ -11,7 +11,7 @@ public class TeleOp_FTCSim extends LinearOpMode {
     private DcMotor rightDrive;
     private DcMotor shootwheel;
     private Servo artifactstopper;
-    boolean isShooting;
+//    boolean isShooting;
 
     public void runOpMode() {
         leftDrive = hardwareMap.get(DcMotor.class, "leftDrive");
@@ -21,7 +21,7 @@ public class TeleOp_FTCSim extends LinearOpMode {
 
         waitForStart();
         leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-        isShooting = false;
+//        isShooting = false;
         artifactstopper.setPosition(0.2);
 
         while(opModeIsActive()) {
@@ -32,6 +32,17 @@ public class TeleOp_FTCSim extends LinearOpMode {
             rightPower = Range.clip(drive - turn, -1.0, 1.0);
             leftDrive.setPower(leftPower);
             rightDrive.setPower(rightPower);
+
+            if(gamepad1.a) {
+                artifactstopper.setPosition(0);
+                shootwheel.setPower(1);
+//                isShooting = true;
+            }
+            else{
+                artifactstopper.setPosition(0.2);
+                shootwheel.setPower(0);
+//                isShooting = false;
+            }
         }
     }
 }
