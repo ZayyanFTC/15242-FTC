@@ -5,9 +5,7 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.noahbres.meepmeep.MeepMeep;
 import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
 import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
-
-public class AutoDrive_MeepMeep {
-    boolean isShooting;
+public class Autonomous1_DECODE_MeepMeep {
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(800);
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
@@ -19,6 +17,8 @@ public class AutoDrive_MeepMeep {
                 .lineToY(-30)
                 .turn(Math.toRadians(-30))
                 .strafeTo(new Vector2d(54, 54))
+                .waitSeconds(2)
+                .strafeTo(new Vector2d(-30,-30))
                 .build());
         meepMeep.setBackground(MeepMeep.Background.FIELD_DECODE_OFFICIAL)
                 .setDarkMode(true)
