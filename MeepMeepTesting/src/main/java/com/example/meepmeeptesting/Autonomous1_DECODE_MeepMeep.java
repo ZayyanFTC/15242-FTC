@@ -16,6 +16,7 @@ public class Autonomous1_DECODE_MeepMeep {
                 .turn(Math.toRadians(-90))
                 .lineToY(-30)
                 .turn(Math.toRadians(-30))
+                .waitSeconds(2)
                 .strafeTo(new Vector2d(54, 54))
                 .waitSeconds(2)
                 .strafeTo(new Vector2d(-30,-30))
